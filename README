@@ -1,0 +1,13 @@
+lyricsmash:
+
+markov chain-based lyric mashup toy
+
+Choose two artists and a topic, mashup the lyrics to see how they might 
+collaborate on that topic.
+
+Uses the markov_brain project at github.com/msbmsb/markov_brain
+
+====
+Author:       Mitchell Bowden <mitchellbowden AT gmail DOT com>
+Version:      0.1
+License:      MIT License: http://creativecommons.org/licenses/MIT/
