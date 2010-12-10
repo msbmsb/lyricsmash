@@ -1,0 +1,5 @@
+*.swp
+tags
+oauth.yaml
+*.pyc
+scripts/

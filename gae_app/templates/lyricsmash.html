@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% block header %}
+{% endblock %}
+{% block content %}
+  {% if error %}
+    <div class="post">
+      <h1 class="title">There was an error</h1>
+      <div class="entry">
+        <p>{{ error }}</p>
+      </div>
+    </div>
+  {% endif %}
+  {% if http_get %}
+    <div class="post">
+      <h1 class="title">Choose the artists</h1>
+      <div class="entry">
+          <p>
+            <form method="POST" action="/ls">
+              Select two artists to mashup:<br />
+              <select name="a0" id="a0">
+              {% for artist in artists %}
+                <option value='{{ artist.name }}'>{{ artist.name }}</option>
+              {% endfor %}
+              </select>
+              <select name="a1" id="a1">
+              {% for artist in artists %}
+                <option value='{{ artist.name }}'>{{ artist.name }}</option>
+              {% endfor %}
+              </select>
+              <br />What should they sing about?<br />
+              <input type="text" name="str" id="str" />
+              <br /><input type="submit" id="button" value="Sing for me! SING!" />
+            </form>
+          </p>
+      </div>
+    </div>
+  {% else %}
+    <div class="post">
+      <h1 class="title">LyricSmash output</h1>
+      <div class="entry">
+          <h3>Here is what {{ a0 }} and {{ a1 }} would sing about {{ str }}:</h3>
+          <p class="box1"> {{ result }} </p>
+      </div>
+
+      <h1 class="title">Do it again!</h1>
+      <div class="entry">
+          <p>
+            <form method="POST" action="/ls">
+              Select two artists to mashup:<br />
+              <select name="a0" id="a0">
+              {% for artist in artists %}
+                {% ifequal artist.name a0 %}
+                  <option value='{{ artist.name }}' selected>{{ artist.name }}</option>
+                {% else %}
+                  <option value='{{ artist.name }}'>{{ artist.name }}</option>
+                {% endifequal %}
+              {% endfor %}
+              </select>
+              <select name="a1" id="a1">
+              {% for artist in artists %}
+                {% ifequal artist.name a1 %}
+                  <option value='{{ artist.name }}' selected>{{ artist.name }}</option>
+                {% else %}
+                  <option value='{{ artist.name }}'>{{ artist.name }}</option>
+                {% endifequal %}
+              {% endfor %}
+              </select>
+              <br />What should they sing about?<br />
+              <input type="text" name="str" id="str" value="{{ str }}"/>
+              <br /><input type="submit" id="button" value="Sing for me! SING!" />
+            </form>
+          </p>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+
+
