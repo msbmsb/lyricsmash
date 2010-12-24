@@ -73,6 +73,7 @@ class LyricsmashHandler(webapp.RequestHandler):
         'a1': artist1,
         'str': str_,
         'result': result,
+        'ws_url_query': urllib.urlencode(dict([['q',re.sub("<br />", " ", result)]])),
         'artists': ArtistWords.all(keys_only=True).fetch(3100)
       }
     except DeadlineExceededError:
